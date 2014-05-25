@@ -13,6 +13,7 @@ if(require("plyr")){
   } else {
     stop("could not install plyr")
   }
+}
 
 features <- read.table("features.txt", col.names=c("id","featureName"),stringsAsFactors = T)
 trainData <- read.table("train/X_train.txt",col.names=features$featureName,check.names=F)
@@ -34,6 +35,8 @@ indices <- grep("-mean\\(\\)|-std\\(\\)",features[,2])
 X <- X[,indices]
 names(X) <- gsub("\\(|\\)","",names(X))
 names(X) <- gsub("_","",names(X))
+names(X) <- gsub("-+mean-+", names(X), replacement="Mean")
+names(X) <- gsub("-+std-+", names(X), replacement="Std")
 
 
 # 3. Uses descriptive activity names to name the activities in the data set and
