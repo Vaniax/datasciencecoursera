@@ -12,9 +12,9 @@ Data Transformation Steps
 
 1. For each of the training and test datasets, 
   * Read the data
-  * Take a subset of the columns representing only the mean and standard deviation values. This is done via regular expressions. Only variables with terms `mean()` and `std()` in it are used, variables with name `meanFreq()` are excluded
-  * Associate additional columns to represent activities and subject IDs read from `y_<dataset>.txt` and `subject_<dataset>.txt` files respectively.
-  * Assign column names by the measurement names in features.txt
+  * Take a subset of the columns representing only the mean and standard deviation values. This is done via regular expressions. Only variables with the terms `-mean()` and `-std()` in it are used, variables with term  `meanFreq()` in it are excluded
+  * Associate additional columns to represent activities and subject IDs read from `y_<dataset>.txt` and `subject_<dataset>.txt` files respectively
+  * Assign column names by manipulating the measurement names in features.txt to remove spaces and convert them to camel case
 2. Merge the training and the test sets, read as in step 1 to create one data set
 3. Associate an additional column with descriptive activity names as specified in `activity_labels.txt`
 4. Use `ddply` of the package `plyr` to get a data set with the average of each variable for each activity and each subject
